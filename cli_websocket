@@ -1,0 +1,40 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+import cmd
+from websocket import create_connection
+class Cli(cmd.Cmd):
+
+
+    def __init__(self):
+        cmd.Cmd.__init__(self)
+        self.prompt = "> "
+        self.intro  = "Добро пожаловать\nДля справки наберите 'help'"
+        self.doc_header ="Доступные команды (для справки по конкретной команде наберите 'help _команда_')"
+
+    def do_hello(self, args):
+        """hello - выводит 'hello world' на экран"""
+        print "hello world"
+    def do_host(self, args):
+        """ip address host"""
+        print "ip address localhost " + args
+    def do_echo(self, args):
+	print "echo test"
+	ws = create_connection("ws://192.168.0.106/echo")
+	print "Sending 'Hello, World'..."
+	ws.send("Hello, World")
+	print "Sent"
+	print "Receiving..."
+	result = ws.recv()
+	print "Received '%s'" % result
+	ws.close()
+
+
+    def default(self, line):
+        print "Несуществующая команда"
+
+if __name__ == "__main__":
+    cli = Cli()
+    try:
+        cli.cmdloop()
+    except KeyboardInterrupt:
+        print "завершение сеанса..."
