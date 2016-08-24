@@ -3,8 +3,7 @@
 import cmd
 from websocket import create_connection
 class Cli(cmd.Cmd):
-
-
+A = 127.0.0.1
     def __init__(self):
         cmd.Cmd.__init__(self)
         self.prompt = "> "
@@ -16,16 +15,21 @@ class Cli(cmd.Cmd):
         print "hello world"
     def do_host(self, args):
         """ip address host"""
-        print "ip address localhost " + args
+        
+	if args = "": print  "ip address localhost " + ip_addr
+	else: print "ip address localhost " + args
     def do_echo(self, args):
 	print "echo test"
 	ws = create_connection("ws://192.168.0.106/echo")
-	print "Sending 'Hello, World'..."
-	ws.send("Hello, World")
-	print "Sent"
-	print "Receiving..."
-	result = ws.recv()
-	print "Received '%s'" % result
+	i = 1
+	while i < 5:
+		i+=1
+		print "Sending 'Hello, World'..."
+		ws.send("Hello, World")
+		print "Sent"
+		print "Receiving..."
+		result = ws.recv()
+		print "Received '%s'" % result
 	ws.close()
 
 
