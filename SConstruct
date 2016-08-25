@@ -42,9 +42,11 @@ else:
 
 mod_websocket = env.SharedLibrary(source=["mod_websocket.c"],
                                   SHLIBPREFIX="",
+				  SHLINKFLAGS="-s -shared",
                                   SHLIBSUFFIX=".so")
 mod_websocket_draft76 = env.SharedLibrary(source=["mod_websocket_draft76.c"],
                                   SHLIBPREFIX="",
+				  SHLINKFLAGS="-s -shared",
                                   SHLIBSUFFIX=".so")
 
 env.Install(dir=modulesdir, source=[mod_websocket, mod_websocket_draft76])

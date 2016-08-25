@@ -6,8 +6,16 @@
 2. Модифицировать python-сценарий сборки/установки модулей так, что бы все SO-модули
 инсталлировались как stripped ELFы.
 Решение: Добавить параметр -s для gcc
+
+mod_websocket = env.SharedLibrary(source=["mod_websocket.c"],
+                                  SHLIBPREFIX="",
+                                  SHLINKFLAGS="-s -shared",
+                                  SHLIBSUFFIX=".so")
+mod_websocket_draft76 = env.SharedLibrary(source=["mod_websocket_draft76.c"],
+                                  SHLIBPREFIX="",
+                                  SHLINKFLAGS="-s -shared",
+                                  SHLIBSUFFIX=".so")
  
-	 env.Append(CCFLAGS = ["-Wall", "-pipe", "-s"])
 
 
 3. Оттестировать работоспособность модулей при помощи примеров examples, приложенных к исходным текстам,
