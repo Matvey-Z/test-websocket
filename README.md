@@ -9,21 +9,17 @@
 `Решение`: 
 Добавить параметр -s для gcc
 
-`
+```
 mod_websocket = env.SharedLibrary(source=["mod_websocket.c"],
 SHLIBPREFIX="",
 SHLINKFLAGS="-s -shared",
 SHLIBSUFFIX=".so")
-`
 
-
-
-
-`mod_websocket_draft76 = env.SharedLibrary(source=["mod_websocket_draft76.c"],
+mod_websocket_draft76 = env.SharedLibrary(source=["mod_websocket_draft76.c"],
 SHLIBPREFIX="",
 SHLINKFLAGS="-s -shared",
 SHLIBSUFFIX=".so")
-`
+```
 
 
 ***3. Оттестировать работоспособность модулей при помощи примеров examples, приложенных к исходным текстам,
